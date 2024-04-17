@@ -1,7 +1,12 @@
-
+import { Container } from 'react-bootstrap'
+import Navbar from 'react-bootstrap/Navbar'
 
 export default function Header() {
   return (
-    <h1>Padawans Portal</h1>
+    <Navbar data-bs-theme='dark' className='main-heading'>
+      <Container>
+        <Navbar.Brand>Padawans Portal</Navbar.Brand>
+      </Container>
+    </Navbar>
   )
 }
