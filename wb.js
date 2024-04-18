@@ -12,8 +12,8 @@ function addUniqueValues(arr){
 
     }
     let output = 0;
-    for ( const num in arr ){
-        if( arr[num] === 1) output += num
+    for ( const num in hash_map ){
+        if( hash_map[num] === 1) output += parseInt(num)
     }
 
     return output;
