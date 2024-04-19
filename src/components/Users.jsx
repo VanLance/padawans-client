@@ -12,7 +12,7 @@ export default function Users() {
     },[])
 
     async function getUsers(){
-        const res = await fetch('http://127.0.0.1:5000/user')
+        const res = await fetch('https://pw141-flask-deploy.onrender.com/user')
         if (res.ok){
             const data = await res.json();
             setUsers(data);

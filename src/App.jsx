@@ -6,13 +6,25 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import SingleUserPage from './pages/SingleUserPage'
 import UsersPage from './pages/UsersPage'
+import { Route, Routes } from 'react-router-dom'
 
 export default function App() {
 
   return (
     <Container fluid className='app'>
       <Header />
-      <UsersPage />
+      <Routes>
+        <Route path='/' element={<LandingPage />}/>
+        <Route path='/login' element={<LoginPage />}/>
+        <Route path='/register' element={<RegisterPage />}/>
+        <Route path='/users' element={<UsersPage />}/>
+        <Route path='/user' element={<SingleUserPage/>}/>
+        <Route path='/feed' element={<FeedPage />}/>
+
+      </Routes>
+
+
+
     </Container>
   )
 
