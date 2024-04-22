@@ -15,7 +15,7 @@ export default function Posts() {
     }, [])
 
     async function getPosts() {
-        const res = await fetch('http://127.0.0.1:5000/post')
+        const res = await fetch('https://pw141-flask-deploy.onrender.com/post')
         if (res.ok) {
             const data = await res.json();
             console.log(data);

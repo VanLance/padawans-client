@@ -3,7 +3,7 @@ import Padawans from '../components/Padawans'
 
 export default function LandingPage() {
   return (
-    <Body sidebar={false}>
+    <Body sidebar>
         <Padawans />
     </Body>
   )

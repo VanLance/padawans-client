@@ -8,7 +8,7 @@ export default function RegisterForm() {
   console.log(user);
 
   async function registerUser(){
-    const res = await fetch('http://127.0.0.1:5000/user',{
+    const res = await fetch('https://pw141-flask-deploy.onrender.com/user',{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
