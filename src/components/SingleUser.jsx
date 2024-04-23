@@ -1,7 +1,15 @@
+import { Container } from "react-bootstrap";
+import Posts from '../components/Posts'
 
-const SingleUser = () => {
+const SingleUser = ({ posts }) => {
+
+  console.log(posts);
+
   return (
-    <div>SingleUser</div>
+    <Container>
+      <Posts />
+    </Container>
+  
   )
 }
 
