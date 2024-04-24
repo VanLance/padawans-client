@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-export default function LoginForm() {
+export default function LoginForm({user, updateUser}) {
 
     const [ userLogin, setUserLogin ] = useState({ username: '', password: ''});
     const navigate = useNavigate();
@@ -25,9 +26,11 @@ export default function LoginForm() {
             body: JSON.stringify(userLogin)
         })
         if (res.ok) {
-            const data = await res.json();
-            console.log(data.access_token);
+            const { access_token } = await res.json();
+            console.log(access_token);
+            updateUser({...user, accessToken: access_token})
             navigate('/')
+            toast(`User: ${userLogin.username} logged in`)
         } else console.error("Failed to Login")
     }
 
@@ -45,7 +48,7 @@ export default function LoginForm() {
     
     return (
         <Container>
-            <h3>Register</h3>
+            <h3>Login</h3>
             <form action="" onSubmit={handleLoginFormSubmit}>
                 <label htmlFor="username">username</label><br />
                 <input type="text" name='username' required /><br />
@@ -58,3 +61,4 @@ export default function LoginForm() {
         </Container>
     )
 }
+

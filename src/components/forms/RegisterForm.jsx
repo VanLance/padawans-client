@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Container from "react-bootstrap/Container";
 
@@ -21,6 +22,7 @@ export default function RegisterForm() {
     if (res.ok){
       const data = await res.json();
       console.log(data);
+      toast(`User: ${user.username} Registered`)
       navigate('/login')
     } else console.error("Login Failed")
   }
