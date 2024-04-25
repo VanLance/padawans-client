@@ -1,9 +1,9 @@
 import Body from "../components/Body";
 import Padawans from '../components/Padawans'
 
-export default function LandingPage({user}) {
+export default function LandingPage() {
   return (
-    <Body sidebar user={user}>
+    <Body sidebar>
         <Padawans />
     </Body>
   )

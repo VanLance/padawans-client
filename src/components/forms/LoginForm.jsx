@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export default function LoginForm({user, updateUser}) {
+import { UserContext } from '../../contexts/UserContext';
+
+export default function LoginForm() {
 
     const [ userLogin, setUserLogin ] = useState({ username: '', password: ''});
+    const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate();
     
     console.table(userLogin);
 
     useEffect(()=>{
+        if (user.accessToken) navigate('/')
+
         if( userLogin.username ){
             loginUser();
             // setUserLogin({username:'',password:''})
@@ -28,7 +33,7 @@ export default function LoginForm({user, updateUser}) {
         if (res.ok) {
             const { access_token } = await res.json();
             console.log(access_token);
-            updateUser({...user, accessToken: access_token})
+            setUser({...userLogin, accessToken: access_token})
             navigate('/')
             toast(`User: ${userLogin.username} logged in`)
         } else console.error("Failed to Login")
@@ -40,7 +45,6 @@ export default function LoginForm({user, updateUser}) {
         const loginElement = e.currentTarget;
         const loginForm = new FormData(loginElement);
 
-        // console.log(loginForm.get('username'));
         setUserLogin(Object.fromEntries(loginForm));
 
         loginUser(userLogin);
@@ -61,4 +65,3 @@ export default function LoginForm({user, updateUser}) {
         </Container>
     )
 }
-

@@ -1,15 +1,19 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Container from "react-bootstrap/Container";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function RegisterForm() {
 
   const [user, setUser] = useState({});
+  const { user: userContextData} = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(user);
+  useEffect(()=>{
+    if (userContextData.accessToken) navigate('/');
+  }, [])
 
   async function registerUser(){
     const res = await fetch('http://127.0.0.1:5000/user',{

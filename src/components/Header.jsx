@@ -1,15 +1,22 @@
+import { useContext } from 'react'
+
 import Container from 'react-bootstrap/Container'
 import NavLink from 'react-bootstrap/NavLink'
 import { Link } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 
-export default function Header(props) {
+import { UserContext } from '../contexts/UserContext'
+
+export default function Header() {
+
+  const { user } = useContext (UserContext)
+
   return (
     <Navbar data-bs-theme='dark' className='main-heading' sticky='top'>
       <Container>
         <Navbar.Brand>Padawans Portal</Navbar.Brand>
         {
-          !props.user.accessToken ?
+          !user.accessToken ?
             <>
               <NavLink as={Link} to={'/register'}>Register</NavLink>
               <NavLink as={Link} to={'/login'}>Login</NavLink>

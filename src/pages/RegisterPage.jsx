@@ -4,7 +4,7 @@ import RegisterForm from '../components/forms/RegisterForm'
 export default function RegisterPage() {
   return (
     <Body sidebar={false}>
-        <RegisterForm></RegisterForm>
+        <RegisterForm />
     </Body>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 
@@ -8,7 +8,7 @@ import SingleUser from '../components/SingleUser'
 
 export default function SingleUserPage() {
 
-  const [ user, setUser] = useState({})
+  const [ viewedUser, setViewedUser ] = useState({})
   const { username } = useParams();
   console.log(username);
 
@@ -23,7 +23,7 @@ export default function SingleUserPage() {
     if (response.ok){
       const userData = await response.json();
       console.log(userData);
-      setUser(userData);
+      setViewedUser(userData);
     }
   }
 
@@ -32,7 +32,7 @@ export default function SingleUserPage() {
       <Container>
 
         <h2>{username}s Page</h2>
-        <SingleUser posts={user.posts}/>
+        <SingleUser posts={viewedUser.posts}/>
       </Container>
     </Body>
   )

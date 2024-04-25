@@ -1,6 +1,10 @@
-import { useRef } from "react"
+import { useContext, useRef } from "react"
+import { UserContext } from "../../contexts/UserContext";
+import { toast } from "react-toastify";
 
-export default function PostForm({ user }) {
+export default function PostForm() {
+
+    const { user } = useContext(UserContext);
 
     const titleInputRef = useRef(null);
     const postBodyInputRef = useRef(null);
@@ -19,6 +23,8 @@ export default function PostForm({ user }) {
         if( res.ok ){
             const data = await res.json()
             console.log(data);
+            toast("Post Created");
+            clearPostForm();
         }
     }
 
@@ -29,6 +35,11 @@ export default function PostForm({ user }) {
             body: postBodyInputRef.current.value,
         }
         sendPost(postOb)
+    }
+
+    function clearPostForm(){
+        titleInputRef.current.value = '';
+        postBodyInputRef.current.value = null;
     }
 
     return (
